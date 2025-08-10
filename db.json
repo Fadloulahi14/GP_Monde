@@ -1,0 +1,106 @@
+{
+  "enums": {
+    "EtatColis": ["Arriver", "en_cours", "en_attente", "annuler", "archiver", "recuperer", "perdu"],
+    "TYPE": ["Routiere", "Maritime", "Aerienne"],
+    "EtatGlobal": ["ouvert", "fermer"],
+    "TypeMateriel": ["incassable", "fragile"]
+  },
+  "personnes": [
+    {
+      "id": 1,
+      "nom": "Ndiaye",
+      "prenom": "Cheikh",
+      "email": "cheikh.ndiaye@example.com",
+      "adresse": "123 Rue de la Corniche, Dakar"
+    },
+    {
+      "id": 2,
+      "nom": "Diop",
+      "prenom": "Awa",
+      "email": "awa.diop@example.com",
+      "adresse": "45 Avenue Blaise Diagne, Saint-Louis"
+    }
+  ],
+  "gestionnaires": [
+    {
+      "id": 1,
+      "login": "admin",
+      "password": "admin123"
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "personneId": 2
+    }
+  ],
+  "colis": [
+    {
+      "id": 1,
+      "Poids": 15.5,
+      "Type_cargaison": "ProduitAlimentaire",
+      "cargaisonId": 1,
+      "etat": "en_cours"
+    },
+    {
+      "id": 1,
+      "Poids": 15.5,
+      "Type_cargaison": "ProduitAlimentaire",
+      "cargaisonId": 1,
+      "etat": "en_cours"
+    }
+  ],
+  "produitsAlimentaires": [
+    { "id": 1, "colisId": 1 }
+  ],
+  "produitsChimiques": [
+    { "id": 1, "colisId": 2, "degreToxicite": 3 }
+  ],
+  "produitsMateriels": [
+    { "id": 1, "colisId": 3, "typeMateriel": "incassable" }
+  ],
+  "cargaisons": [
+    {
+      "id": "CARG001",
+      "poids_total": 45.5,
+      "colis": [1, 2, 3],
+      "trajet": {
+        "depart": {
+          "lat": 38.6937,
+          "lng": -17.4441,
+          "ville": "Dakar"
+        },
+        "arrivee": {
+          "lat": 16.0326,
+          "lng": -16.5037,
+          "ville": "Saint-Louis"
+        }
+      },
+      "etat_global": "en_cours",
+      "etat_avance": "pending",
+      "distance": 200,
+      "prix_total": 25000
+    },
+    {
+      "id": "CARG002",
+      "poids_total": 32.8,
+      "colis": [4, 5],
+      "trajet": {
+        "depart": {
+          "lat": 14.6937,
+          "lng": -17.4441,
+          "ville": "Dakar"
+        },
+        "arrivee": {
+          "lat": 16.0326,
+          "lng": -16.5037,
+          "ville": "Saint-Louis"
+        }
+      },
+      "etat_global": "annuler",
+      "etat_avance": "canceled",
+      "distance": 200,
+      "prix_total": 18000
+    }
+  ]
+}
