@@ -1,4 +1,4 @@
-import { Personne } from './Personne';
+import { Personne } from './Personne.js';
 
 /**
  * Classe représentant un client

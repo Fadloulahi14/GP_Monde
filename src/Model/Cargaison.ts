@@ -1,7 +1,7 @@
-import { EtatGlobal } from './enums/EtatGlobal';
-import { EtatAvance } from './enums/EtatAvance';
-import { Trajet } from './Trajet';
-import { Colis } from './Colis';
+import { EtatGlobal } from './enums/EtatGlobal.js';
+import { EtatAvance } from './enums/EtatAvance.js';
+import { Trajet } from './Trajet.js';
+import { Colis } from './Colis.js';
 
 /**
  * Classe représentant une cargaison
@@ -254,6 +254,35 @@ export class Cargaison {
             data.etat_avance || EtatAvance.PENDING,
             data.distance || 0,
             data.prix_total || 0
+        );
+    }
+
+    /**
+     * Crée une cargaison à partir des données d'un formulaire
+     */
+    public static fromFormData(formData: FormData): Cargaison {
+        const trajet = new Trajet(
+            {
+                ville: formData.get('lieuDepart') as string,
+                lat: 0,
+                lng: 0
+            },
+            {
+                ville: formData.get('lieuArrivee') as string,
+                lat: 0,
+                lng: 0
+            }
+        );
+
+        return new Cargaison(
+            `CARG-${Date.now()}`,
+            parseFloat(formData.get('poidsMax') as string) || 0,
+            [],
+            trajet,
+            EtatGlobal.OUVERT,
+            EtatAvance.PENDING,
+            0,
+            0
         );
     }
 

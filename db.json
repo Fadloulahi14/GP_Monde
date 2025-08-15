@@ -1,20 +1,38 @@
 {
   "enums": {
-    "EtatColis": ["Arriver", "en_cours", "en_attente", "annuler", "archiver", "recuperer", "perdu"],
-    "TYPE": ["Routiere", "Maritime", "Aerienne"],
-    "EtatGlobal": ["ouvert", "fermer"],
-    "TypeMateriel": ["incassable", "fragile"]
+    "EtatColis": [
+      "Arriver",
+      "en_cours",
+      "en_attente",
+      "annuler",
+      "archiver",
+      "recuperer",
+      "perdu"
+    ],
+    "TYPE": [
+      "Routiere",
+      "Maritime",
+      "Aerienne"
+    ],
+    "EtatGlobal": [
+      "ouvert",
+      "fermer"
+    ],
+    "TypeMateriel": [
+      "incassable",
+      "fragile"
+    ]
   },
   "personnes": [
     {
-      "id": 1,
+      "id": "2",
       "nom": "Ndiaye",
       "prenom": "Cheikh",
       "email": "cheikh.ndiaye@example.com",
       "adresse": "123 Rue de la Corniche, Dakar"
     },
     {
-      "id": 2,
+      "id": "1",
       "nom": "Diop",
       "prenom": "Awa",
       "email": "awa.diop@example.com",
@@ -23,50 +41,103 @@
   ],
   "gestionnaires": [
     {
-      "id": 1,
+      "id": "1",
       "login": "admin",
       "password": "admin123"
     }
   ],
   "clients": [
     {
-      "id": 1,
+      "id": "1",
       "personneId": 2
+    },
+    {
+      "id": "2",
+      "personneId": 1
     }
   ],
   "colis": [
     {
-      "id": 1,
+      "id": "1",
       "Poids": 15.5,
       "Type_cargaison": "ProduitAlimentaire",
       "cargaisonId": 1,
-      "etat": "en_cours"
+      "etat": "en_cours",
+      "clientId": 1
     },
     {
-      "id": 1,
-      "Poids": 15.5,
-      "Type_cargaison": "ProduitAlimentaire",
+      "id": "2",
+      "Poids": 20,
+      "Type_cargaison": "ProduitChimique",
       "cargaisonId": 1,
-      "etat": "en_cours"
+      "etat": "en_cours",
+      "clientId": 2
+    },
+    {
+      "id": "3",
+      "Poids": 10,
+      "Type_cargaison": "ProduitMateriel",
+      "cargaisonId": 2,
+      "etat": "en_attente",
+      "clientId": 1
+    },
+    {
+      "id": "4",
+      "Poids": 12.5,
+      "Type_cargaison": "ProduitAlimentaire",
+      "cargaisonId": 2,
+      "etat": "annuler",
+      "clientId": 2
+    },
+    {
+      "id": "5",
+      "Poids": 8,
+      "Type_cargaison": "ProduitChimique",
+      "cargaisonId": 2,
+      "etat": "archiver",
+      "clientId": 1
+    },
+    {
+      "id": "5",
+      "Poids": 8,
+      "Type_cargaison": "ProduitChimique",
+      "cargaisonId": 2,
+      "etat": "archiver",
+      "clientId": 1
     }
   ],
   "produitsAlimentaires": [
-    { "id": 1, "colisId": 1 }
+    {
+      "id": "1",
+      "colisId": 1
+    }
   ],
   "produitsChimiques": [
-    { "id": 1, "colisId": 2, "degreToxicite": 3 }
+    {
+      "id": "1",
+      "colisId": 2,
+      "degreToxicite": 3
+    }
   ],
   "produitsMateriels": [
-    { "id": 1, "colisId": 3, "typeMateriel": "incassable" }
+    {
+      "id": "1",
+      "colisId": 3,
+      "typeMateriel": "incassable"
+    }
   ],
   "cargaisons": [
     {
       "id": "CARG001",
       "poids_total": 45.5,
-      "colis": [1, 2, 3],
+      "colis": [
+        1,
+        2,
+        3
+      ],
       "trajet": {
         "depart": {
-          "lat": 38.6937,
+          "lat": 17.6937,
           "lng": -17.4441,
           "ville": "Dakar"
         },
@@ -84,7 +155,10 @@
     {
       "id": "CARG002",
       "poids_total": 32.8,
-      "colis": [4, 5],
+      "colis": [
+        4,
+        5
+      ],
       "trajet": {
         "depart": {
           "lat": 14.6937,
@@ -101,6 +175,118 @@
       "etat_avance": "canceled",
       "distance": 200,
       "prix_total": 18000
+    },
+    {
+      "id": "CARG-1755269412372",
+      "trajet": {
+        "depart": {
+          "ville": "",
+          "lat": 0,
+          "lng": 0
+        },
+        "arrivee": {
+          "ville": "",
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "type": "",
+      "poids_total": 0,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0
+    },
+    {
+      "id": "CARG-1755272126749",
+      "trajet": {
+        "depart": {
+          "ville": "",
+          "lat": 0,
+          "lng": 0
+        },
+        "arrivee": {
+          "ville": "",
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "type": "",
+      "poids_max": 0,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0
+    },
+    {
+      "id": "",
+      "trajet": {
+        "depart": {
+          "ville": "",
+          "lat": 14.6937,
+          "lng": -17.4441
+        },
+        "arrivee": {
+          "ville": "",
+          "lat": 48.8566,
+          "lng": 2.3522
+        }
+      },
+      "type": "",
+      "poids_total": 0,
+      "poids_max": null,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0
+    },
+    {
+      "id": "",
+      "trajet": {
+        "depart": {
+          "ville": "",
+          "lat": 14.6937,
+          "lng": -17.4441
+        },
+        "arrivee": {
+          "ville": "",
+          "lat": 48.8566,
+          "lng": 2.3522
+        }
+      },
+      "type": "",
+      "poids_total": 0,
+      "poids_max": null,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0
+    },
+    {
+      "id": "CARG-1755272888375",
+      "trajet": {
+        "depart": {
+          "ville": "",
+          "lat": 0,
+          "lng": 0
+        },
+        "arrivee": {
+          "ville": "",
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "type": "",
+      "poids_max": 0,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0
     }
   ]
 }

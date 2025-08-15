@@ -36,94 +36,33 @@ $pageSubtitle = "Gérez toutes vos cargaisons";
     </div>
 </div>
 
+<div class="md:col-span-2 mt-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">
+    </label>
+    <div id="colis-disponibles" class="max-h-60 overflow-y-auto border border-gray-300 rounded-lg p-4">
+    </div>
+</div>
+
 <script type="module">
-    async function loadCargaisons() {
-        try {
-            console.log('Récupération des cargaisons depuis le serveur...');
-            const response = await fetch('http://localhost:3000/cargaisons');
-            const cargaisonsData = await response.json();
-            console.log('Données reçues:', cargaisonsData);
-            const tbody = document.getElementById('cargaisons-list');
-            
-            tbody.innerHTML = ''; // Clear existing content
-            
-            for (const cargaison of cargaisonsData) {
-                const row = createCargaisonRow(cargaison);
-                tbody.appendChild(row);
-            }
-        } catch (error) {
-            console.error('Erreur lors du chargement des cargaisons:', error);
-            if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
-                alert('Impossible de se connecter au serveur JSON. Vérifiez que json-server est en cours d\'exécution.');
-            } else {
-                alert(`Erreur lors du chargement des cargaisons: ${error.message}`);
-            }
-            console.log('Stack trace:', error.stack);
-        }
+import { CargaisonService } from "../dist/services/CargaisonService.js";
+import { CargaisonUIService } from "../dist/services/CargaisonUIService.js";
+
+const service = new CargaisonService('http://localhost:3000');
+const uiService = new CargaisonUIService(service, '#cargaisons-list', 'input[type="text"]');
+
+document.getElementById('cargaison-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    
+    try {
+        await service.create(formData);
+        closeModal('cargaison-modal');
+        uiService.init();
+    } catch (error) {
+        console.error('Erreur lors de la création de la cargaison:', error);
     }
+});
 
-    function createCargaisonRow(cargaison) {
-        const tr = document.createElement('tr');
-        
-        const getEtatClass = (etat) => {
-            switch(etat) {
-                case 'en_cours': return 'bg-blue-100 text-blue-800';
-                case 'annuler': return 'bg-red-100 text-red-800';
-                case 'termine': return 'bg-green-100 text-green-800';
-                default: return 'bg-gray-100 text-gray-800';
-            }
-        };
-
-        tr.innerHTML = `
-            <td class="px-6 py-4 text-sm font-medium text-gray-800">${cargaison.id}</td>
-            <td class="px-6 py-4 text-sm text-gray-600">${cargaison.poids_total} kg</td>
-            <td class="px-6 py-4 text-sm text-gray-600">
-                ${cargaison.trajet.depart.ville} → ${cargaison.trajet.arrivee.ville}
-            </td>
-            <td class="px-6 py-4 text-sm text-gray-600">${cargaison.colis.length}</td>
-            <td class="px-6 py-4">
-                <span class="px-3 py-1 ${getEtatClass(cargaison.etat_global)} text-xs font-medium rounded-full">
-                    ${cargaison.etat_global}
-                </span>
-            </td>
-            <td class="px-6 py-4 text-sm text-gray-600">${cargaison.prix_total.toLocaleString()} FCFA</td>
-            <td class="px-6 py-4 text-sm">
-                <button onclick="voirCargaison('${cargaison.id}')" 
-                        class="text-blue-600 hover:text-blue-800 mr-3">
-                    Voir
-                </button>
-                <button onclick="modifierCargaison('${cargaison.id}')" 
-                        class="text-gray-600 hover:text-gray-800">
-                    Modifier
-                </button>
-            </td>
-        `;
-        
-        return tr;
-    }
-
-    // Fonctions de gestion des actions
-    window.voirCargaison = (id) => {
-        // Implémentation à venir
-        console.log('Voir cargaison:', id);
-    };
-
-    window.modifierCargaison = (id) => {
-        // Implémentation à venir
-        console.log('Modifier cargaison:', id);
-    };
-
-    // Charger les cargaisons au chargement de la page
-    document.addEventListener('DOMContentLoaded', loadCargaisons);
-
-    // Recherche de cargaisons
-    document.querySelector('input[type="text"]').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const rows = document.querySelectorAll('#cargaisons-list tr');
-        
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(searchTerm) ? '' : 'none';
-        });
-    });
+// Initialiser le service UI
+uiService.init();
 </script>

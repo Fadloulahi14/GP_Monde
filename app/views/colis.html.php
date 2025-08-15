@@ -22,6 +22,59 @@ $pageSubtitle = "Gérez tous vos colis";
     </div>
 </div>
 
+<!-- Formulaire de création de colis -->
+<div id="colis-form-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <div class="p-6 border-b border-gray-200">
+                <h3 class="text-lg font-semibold">Nouveau Colis</h3>
+            </div>
+            <form id="new-colis-form" class="p-6">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Cargaison</label>
+                        <select name="cargaisonId" required 
+                                class="mt-1 block w-full rounded-md border-gray-300">
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Type de produit</label>
+                        <select name="typeProduit" required 
+                                class="mt-1 block w-full rounded-md border-gray-300">
+                            <option value="alimentaire">Alimentaire</option>
+                            <option value="chimique">Chimique</option>
+                            <option value="materiel">Matériel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Poids (kg)</label>
+                        <input type="number" name="poids" required min="0" step="0.1"
+                               class="mt-1 block w-full rounded-md border-gray-300">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Expéditeur</label>
+                        <select name="expediteurId" required 
+                                class="mt-1 block w-full rounded-md border-gray-300">
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Destinataire</label>
+                        <select name="destinataireId" required 
+                                class="mt-1 block w-full rounded-md border-gray-300">
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" onclick="closeColisModal()" 
+                            class="px-4 py-2 border rounded-md">Annuler</button>
+                    <button type="submit" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md">Créer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script type="module">
     async function loadColis() {
         try {
@@ -131,4 +184,62 @@ $pageSubtitle = "Gérez tous vos colis";
 
     // Charger les colis au chargement de la page
     document.addEventListener('DOMContentLoaded', loadColis);
+
+    async function loadFormData() {
+        const [cargaisons, clients] = await Promise.all([
+            fetch('http://localhost:3000/cargaisons').then(r => r.json()),
+            fetch('http://localhost:3000/clients').then(r => r.json())
+        ]);
+
+        const cargaisonSelect = document.querySelector('select[name="cargaisonId"]');
+        const expediteurSelect = document.querySelector('select[name="expediteurId"]');
+        const destinataireSelect = document.querySelector('select[name="destinataireId"]');
+
+        // Charger uniquement les cargaisons ouvertes
+        cargaisonSelect.innerHTML = cargaisons
+            .filter(c => c.etat_global === 'ouvert')
+            .map(c => `<option value="${c.id}">${c.id}</option>`)
+            .join('');
+
+        // Charger les clients pour expéditeur et destinataire
+        const clientOptions = clients.map(c => `<option value="${c.id}">${c.nom}</option>`).join('');
+        expediteurSelect.innerHTML = clientOptions;
+        destinataireSelect.innerHTML = clientOptions;
+    }
+
+    document.getElementById('new-colis-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        
+        try {
+            const response = await fetch('http://localhost:3000/colis', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: `COL-${Date.now()}`,
+                    Type_cargaison: formData.get('typeProduit'),
+                    Poids: Number(formData.get('poids')),
+                    expediteurId: formData.get('expediteurId'),
+                    destinataireId: formData.get('destinataireId'),
+                    cargaisonId: formData.get('cargaisonId'),
+                    etat: 'en_attente'
+                })
+            });
+
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            closeColisModal();
+            location.reload();
+        } catch (error) {
+            console.error('Erreur:', error);
+        }
+    });
+
+    window.openColisModal = () => {
+        document.getElementById('colis-form-modal').classList.remove('hidden');
+        loadFormData();
+    };
+
+    window.closeColisModal = () => {
+        document.getElementById('colis-form-modal').classList.add('hidden');
+    };
 </script>
