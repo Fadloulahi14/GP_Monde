@@ -7,12 +7,6 @@ import { Cargaison } from './Cargaison';
  * Classe représentant un colis
  */
 export class Colis {
-    id;
-    poids;
-    produit;
-    client;
-    etat;
-    cargaison;
     constructor(id = Colis.generateId(), poids = 0, produit, client, etat = EtatColis.EN_ATTENTE, cargaison) {
         this.id = id;
         this.poids = poids;
@@ -73,13 +67,14 @@ export class Colis {
         return `${prefix}-${timestamp.slice(-6)}-${random}`;
     }
     toObject() {
+        var _a;
         return {
             id: this.id,
             poids: this.poids,
             etat: this.etat,
             produit: this.produit.toObject(),
             client: this.client.toObject(),
-            cargaison: this.cargaison?.toObject(),
+            cargaison: (_a = this.cargaison) === null || _a === void 0 ? void 0 : _a.toObject(),
             needsSpecialHandling: this.needsSpecialHandling(),
             isValid: this.isValid()
         };

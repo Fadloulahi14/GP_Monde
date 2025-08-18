@@ -6,6 +6,8 @@
     <title><?= isset($title) ? $title : 'GPduMonde - Gestion de Cargaisons' ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <style>
         .sidebar-item:hover {
             background-color: #f8fafc;
@@ -225,10 +227,8 @@
     </div>
 
     <script>
-        // Initialize Feather Icons
         feather.replace();
 
-        // Modal functionality
         function openModal(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -243,7 +243,6 @@
             }
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             const modals = ['cargaison-modal'];
             modals.forEach(modalId => {
@@ -254,7 +253,6 @@
             });
         }
 
-        // Form submission handling
         document.getElementById('cargaison-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -278,7 +276,6 @@
             closeModal('cargaison-modal');
         });
 
-        // Auto-generate cargaison number
         document.addEventListener('DOMContentLoaded', function() {
             const numeroInput = document.getElementById('numero');
             if (numeroInput && !numeroInput.value) {
@@ -289,7 +286,6 @@
             }
         });
 
-        // Logout function
         function logout() {
         
                 window.location.href = '?page=login';

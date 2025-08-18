@@ -1,7 +1,5 @@
 import { Personne } from './Personne';
 export class Gestionnaire extends Personne {
-    login;
-    password;
     constructor(id, nom, prenom, email, adresse, login, password) {
         super(id, nom, prenom, email, adresse);
         this.login = login;

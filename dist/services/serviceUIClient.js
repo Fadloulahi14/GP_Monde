@@ -1,4 +1,4 @@
-import { ClientService } from "./ClientService.js";
+import { ClientService } from "./clientService.js";
 export class ServiceUIClient {
     clientService;
     constructor() {

@@ -3,7 +3,6 @@ import { Personne } from './Personne.js';
  * Classe représentant un client
  */
 export class Client extends Personne {
-    telephone;
     constructor(id, nom, prenom, email, adresse, telephone = '') {
         super(id, nom, prenom, email, adresse);
         this.telephone = telephone;
@@ -62,13 +61,7 @@ export class Client extends Personne {
      * Convertit le client en objet plain
      */
     toObject() {
-        return {
-            ...super.toObject(),
-            telephone: this.telephone,
-            nom_complet: this.getNomComplet(),
-            initiales: this.getInitiales(),
-            is_valid: this.isValid()
-        };
+        return Object.assign(Object.assign({}, super.toObject()), { telephone: this.telephone, nom_complet: this.getNomComplet(), initiales: this.getInitiales(), is_valid: this.isValid() });
     }
     /**
      * Crée un client à partir d'un objet

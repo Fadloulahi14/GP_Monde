@@ -12,7 +12,6 @@
 </head>
 <body class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="">
-        <!-- Logo et titre -->
         <div class="text-center">
             <div class="mx-auto h-16 w-16 bg-white rounded-full flex items-center justify-center shadow-lg">
                 <i data-feather="truck" class="h-8 w-8 text-blue-600"></i>
@@ -25,12 +24,10 @@
             </p>
         </div>
 
-        <!-- Contenu principal -->
         <div class="bg-white rounded-lg shadow-xl p-8">
             <?= $content ?>
         </div>
 
-        <!-- Footer -->
         <div class="text-center">
             <p class="text-blue-100 text-sm">
                 &copy; <?= date('Y') ?> GPduMonde. Développé par Fadloulahi Dev 778012731.
@@ -39,7 +36,6 @@
     </div>
 
     <script>
-        // Initialize Feather Icons
         feather.replace();
     </script>
 </body>

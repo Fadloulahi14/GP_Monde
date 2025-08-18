@@ -71,24 +71,19 @@ $pageSubtitle = "Vue d'ensemble de votre activité";
 </div>
 
 
-<!-- ...existing code... -->
 
-<!-- Carte des cargaisons -->
 <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200 mb-8">
     <h2 class="text-lg font-semibold text-gray-800 mb-4">Suivi des Cargaisons</h2>
     <div id="map" style="height: 350px; width: 100%; border-radius: 0.5rem;"></div>
 </div>
 
 <script>
-// Initialisation de la carte
-const map = L.map('map').setView([14.6937, -17.4441], 6); // Centré sur le Sénégal
+const map = L.map('map').setView([14.6937, -17.4441], 6); 
 
-// Ajout du fond de carte OpenStreetMap
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Fonction pour charger et afficher les cargaisons
 async function loadCargaisons() {
     try {
         const response = await fetch('http://localhost:3000/cargaisons');
@@ -96,7 +91,6 @@ async function loadCargaisons() {
         
         cargaisons.forEach(cargaison => {
             if (cargaison.trajet && cargaison.trajet.depart && cargaison.trajet.arrivee) {
-                // Marqueur pour le point de départ
                 L.marker([cargaison.trajet.depart.lat, cargaison.trajet.depart.lng])
                     .bindPopup(`
                         <b>Départ</b><br>
@@ -105,7 +99,6 @@ async function loadCargaisons() {
                     `)
                     .addTo(map);
 
-                // Marqueur pour le point d'arrivée
                 L.marker([cargaison.trajet.arrivee.lat, cargaison.trajet.arrivee.lng])
                     .bindPopup(`
                         <b>Arrivée</b><br>
@@ -114,7 +107,6 @@ async function loadCargaisons() {
                     `)
                     .addTo(map);
 
-                // Ligne entre le départ et l'arrivée
                 L.polyline([
                     [cargaison.trajet.depart.lat, cargaison.trajet.depart.lng],
                     [cargaison.trajet.arrivee.lat, cargaison.trajet.arrivee.lng]
@@ -129,6 +121,5 @@ async function loadCargaisons() {
     }
 }
 
-// Charger les cargaisons au chargement de la page
 loadCargaisons();
 </script>

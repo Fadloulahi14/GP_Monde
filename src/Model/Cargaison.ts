@@ -152,8 +152,12 @@ export class Cargaison {
         if (this.etat_global !== EtatGlobal.OUVERT) {
             throw new Error("Impossible d'ajouter un colis à une cargaison fermée");
         }
+        if (this.colis.length >= 10) {
+            throw new Error("Une cargaison ne peut contenir plus de 10 colis");
+        }
         this.colis.push(colis);
         this.recalculerPoidsTotal();
+        this.recalculerPrixTotal();
     }
 
     /**
@@ -176,6 +180,17 @@ export class Cargaison {
      */
     private recalculerPoidsTotal(): void {
         this.poids_total = this.colis.reduce((total, colis) => total + colis.getPoidsTotal(), 0);
+    }
+
+    /**
+     * Recalcule le prix total basé sur les colis (minimum 10.000 FCFA par colis)
+     */
+    private recalculerPrixTotal(): void {
+        const prixParKg = 500; // Prix par kg
+        this.prix_total = this.colis.reduce((total, colis) => {
+            const prixCalcule = colis.getPoidsTotal() * prixParKg;
+            return total + Math.max(prixCalcule, 10000); // Minimum 10.000 FCFA
+        }, 0);
     }
 
     /**
@@ -219,10 +234,17 @@ export class Cargaison {
     }
 
     /**
+     * Vérifie si la cargaison peut accepter encore des colis
+     */
+    public peutAccepterNouveauxColis(): boolean {
+        return this.etat_global === EtatGlobal.OUVERT && this.colis.length < 10;
+    }
+
+    /**
      * Vérifie si la cargaison est valide
      */
     public isValid(): boolean {
-        return this.trajet.isValid() && this.colis.length > 0 && this.distance > 0;
+        return this.trajet.isValid() && this.colis.length >= 1 && this.colis.length <= 10 && this.distance > 0;
     }
 
     /**

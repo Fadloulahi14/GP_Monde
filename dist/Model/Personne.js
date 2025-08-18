@@ -1,9 +1,4 @@
 export class Personne {
-    id;
-    nom;
-    prenom;
-    email;
-    adresse;
     constructor(id, nom, prenom, email, adresse) {
         this.id = id;
         this.nom = nom;

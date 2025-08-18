@@ -3,9 +3,7 @@ $pageTitle = "Rapports et Statistiques";
 $pageSubtitle = "Analysez vos données de transport";
 ?>
 
-<!-- Graphiques et métriques -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-    <!-- Graphique des revenus -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Revenus mensuels (FCFA)</h3>
         <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
@@ -17,7 +15,6 @@ $pageSubtitle = "Analysez vos données de transport";
         </div>
     </div>
     
-    <!-- Graphique des expéditions -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Expéditions par type</h3>
         <div class="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
@@ -30,7 +27,6 @@ $pageSubtitle = "Analysez vos données de transport";
     </div>
 </div>
 
-<!-- Métriques détaillées -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
     <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
         <div class="flex items-center justify-between">
@@ -85,9 +81,7 @@ $pageSubtitle = "Analysez vos données de transport";
     </div>
 </div>
 
-<!-- Tableaux de rapports -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- Top destinations -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200">
         <div class="p-6 border-b border-gray-200">
             <h3 class="text-lg font-semibold text-gray-800">Top destinations</h3>
@@ -149,7 +143,6 @@ $pageSubtitle = "Analysez vos données de transport";
         </div>
     </div>
     
-    <!-- Clients top -->
     <div class="bg-white rounded-lg shadow-sm border border-gray-200">
         <div class="p-6 border-b border-gray-200">
             <h3 class="text-lg font-semibold text-gray-800">Meilleurs clients</h3>

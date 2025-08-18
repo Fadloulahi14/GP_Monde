@@ -104,26 +104,21 @@ async function handleLogin(event) {
     const login = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     
-    // Validation simple
     if (!login || !password) {
         alert('Veuillez remplir tous les champs');
         return;
     }
     
     try {
-        // Récupération des gestionnaires depuis l'API
         const response = await fetch('http://localhost:3000/gestionnaires');
         const gestionnaires = await response.json();
         
-        // Vérification des credentials
         const gestionnaire = gestionnaires.find(g => 
             g.login === login && g.password === password
         );
         
         if (gestionnaire) {
-            // Stockage des informations du gestionnaire en session
             sessionStorage.setItem('gestionnaire', JSON.stringify(gestionnaire));
-            // Redirection vers le dashboard
             window.location.href = '?page=dashboard';
         } else {
             alert('Login ou mot de passe incorrect');
@@ -134,7 +129,6 @@ async function handleLogin(event) {
     }
 }
 
-// Auto-fill demo credentials on page load
 document.addEventListener('DOMContentLoaded', function() {
     // Optionally pre-fill the demo credentials
     // document.getElementById('email').value = 'admin@gpdumonde.com';

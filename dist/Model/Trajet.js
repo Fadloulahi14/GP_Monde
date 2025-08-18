@@ -2,8 +2,6 @@
  * Classe représentant un trajet avec point de départ et d'arrivée
  */
 export class Trajet {
-    depart;
-    arrivee;
     /**
      * Constructeur de la classe Trajet
      */

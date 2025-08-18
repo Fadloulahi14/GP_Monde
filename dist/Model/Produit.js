@@ -26,13 +26,10 @@ export class ProduitAlimentaire extends Produit {
         return TypeProduit.ALIMENTAIRE;
     }
     toObject() {
-        return {
-            ...super.toObject()
-        };
+        return Object.assign({}, super.toObject());
     }
 }
 export class ProduitChimique extends Produit {
-    degreeToxicite;
     constructor(degreeToxicite) {
         super();
         this.degreeToxicite = degreeToxicite;
@@ -44,15 +41,10 @@ export class ProduitChimique extends Produit {
         return this.degreeToxicite;
     }
     toObject() {
-        return {
-            ...super.toObject(),
-            degreeToxicite: this.degreeToxicite
-        };
+        return Object.assign(Object.assign({}, super.toObject()), { degreeToxicite: this.degreeToxicite });
     }
 }
 export class ProduitMateriel extends Produit {
-    incassable;
-    fragile;
     constructor(incassable, fragile) {
         super();
         this.incassable = incassable;
@@ -72,10 +64,6 @@ export class ProduitMateriel extends Produit {
         return this.fragile;
     }
     toObject() {
-        return {
-            ...super.toObject(),
-            incassable: this.incassable,
-            fragile: this.fragile
-        };
+        return Object.assign(Object.assign({}, super.toObject()), { incassable: this.incassable, fragile: this.fragile });
     }
 }

@@ -11,11 +11,11 @@ function renderView($viewFile, $title = null) {
     $content = ob_get_clean();
     
     // Choisir le layout selon la page
-    if ($viewFile === 'login.html.php' || $viewFile === 'suivi.html.php') {
-        // Utiliser le layout de connexion pour la page login et suivi
+    if ($uri === 'login') {
         require_once 'app/views/login-layout.php';
+    } elseif ($uri === 'suivi-colis') {
+        require_once 'app/views/public-layout.php';
     } else {
-        // Utiliser le layout dashboard pour toutes les autres vues
         require_once 'app/views/dashboard-layout.php';
     }
 }

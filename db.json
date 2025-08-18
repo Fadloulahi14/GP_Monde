@@ -59,51 +59,76 @@
   "colis": [
     {
       "id": "1",
+      "code_suivi": "AB123456",
       "Poids": 15.5,
       "Type_cargaison": "ProduitAlimentaire",
-      "cargaisonId": 1,
-      "etat": "en_cours",
+      "expediteur": "fadloulahi (77 123 45 67)",
+      "destinataire": "fadel (77 987 65 43)",
+      "cargaisonId": "CARG001",
+      "etat": "perdu",
       "clientId": 1
     },
     {
       "id": "2",
+      "code_suivi": "CD789012",
       "Poids": 20,
       "Type_cargaison": "ProduitChimique",
-      "cargaisonId": 1,
-      "etat": "en_cours",
+      "expediteur": "FALLOU (77 234 56 78)",
+      "destinataire": "ASTOU (77 876 54 32)",
+      "cargaisonId": "CARG001",
+      "etat": "perdu",
       "clientId": 2
     },
     {
       "id": "3",
+      "code_suivi": "EF345678",
       "Poids": 10,
       "Type_cargaison": "ProduitMateriel",
-      "cargaisonId": 2,
-      "etat": "en_attente",
+      "expediteur": "AMADOU (77 345 67 89)",
+      "destinataire": "MODU (77 765 43 21)",
+      "cargaisonId": "CARG002",
+      "etat": "recuperer",
       "clientId": 1
     },
     {
       "id": "4",
+      "code_suivi": "GH901234",
       "Poids": 12.5,
       "Type_cargaison": "ProduitAlimentaire",
-      "cargaisonId": 2,
-      "etat": "annuler",
+      "expediteur": "FADEL (77 456 78 90)",
+      "destinataire": "MOUHAMED (77 654 32 10)",
+      "cargaisonId": "CARG002",
+      "etat": "recuperer",
       "clientId": 2
     },
     {
-      "id": "5",
-      "Poids": 8,
-      "Type_cargaison": "ProduitChimique",
-      "cargaisonId": 2,
-      "etat": "archiver",
-      "clientId": 1
+      "id": "COL-1755276846002",
+      "Type_cargaison": "chimique",
+      "Poids": 1.2,
+      "expediteurId": "1",
+      "destinataireId": "1",
+      "cargaisonId": "CARG-589753",
+      "etat": "en_attente"
     },
     {
-      "id": "5",
-      "Poids": 8,
-      "Type_cargaison": "ProduitChimique",
-      "cargaisonId": 2,
-      "etat": "archiver",
-      "clientId": 1
+      "id": "COL-1755353647226",
+      "code_suivi": "GN000651",
+      "Type_cargaison": "fragile",
+      "Poids": 2.1,
+      "expediteur": "fallou (778012731)",
+      "destinataire": "moussa (772012031)",
+      "cargaisonId": "CARG-043001",
+      "etat": "en_attente"
+    },
+    {
+      "id": "COL-1755353730221",
+      "code_suivi": "JI472771",
+      "Type_cargaison": "alimentaire",
+      "Poids": 4,
+      "expediteur": "abdoulay (778011111)",
+      "destinataire": "pathe (777777777)",
+      "cargaisonId": "CARG-043001",
+      "etat": "en_attente"
     }
   ],
   "produitsAlimentaires": [
@@ -147,7 +172,7 @@
           "ville": "Saint-Louis"
         }
       },
-      "etat_global": "en_cours",
+      "etat_global": "perdu",
       "etat_avance": "pending",
       "distance": 200,
       "prix_total": 25000
@@ -171,122 +196,178 @@
           "ville": "Saint-Louis"
         }
       },
-      "etat_global": "annuler",
+      "etat_global": "recuperer",
       "etat_avance": "canceled",
       "distance": 200,
       "prix_total": 18000
     },
     {
-      "id": "CARG-1755269412372",
+      "id": "CARG-043001",
       "trajet": {
         "depart": {
-          "ville": "",
+          "ville": "Dakar",
           "lat": 0,
           "lng": 0
         },
         "arrivee": {
-          "ville": "",
+          "ville": "Paris france",
           "lat": 0,
           "lng": 0
         }
       },
-      "type": "",
+      "type": "aerienne",
+      "poids_max": 26,
       "poids_total": 0,
       "colis": [],
       "etat_global": "ouvert",
       "etat_avance": "pending",
       "distance": 0,
-      "prix_total": 0
+      "prix_total": 0,
+      "date_creation": "2025-08-15T16:41:50.786Z"
     },
     {
-      "id": "CARG-1755272126749",
+      "id": "CARG-589753",
       "trajet": {
         "depart": {
-          "ville": "",
+          "ville": "Dakar",
           "lat": 0,
           "lng": 0
         },
         "arrivee": {
-          "ville": "",
+          "ville": "Paris",
           "lat": 0,
           "lng": 0
         }
       },
-      "type": "",
-      "poids_max": 0,
-      "colis": [],
-      "etat_global": "ouvert",
-      "etat_avance": "pending",
-      "distance": 0,
-      "prix_total": 0
-    },
-    {
-      "id": "",
-      "trajet": {
-        "depart": {
-          "ville": "",
-          "lat": 14.6937,
-          "lng": -17.4441
-        },
-        "arrivee": {
-          "ville": "",
-          "lat": 48.8566,
-          "lng": 2.3522
-        }
-      },
-      "type": "",
+      "type": "aerienne",
+      "poids_max": 23,
       "poids_total": 0,
-      "poids_max": null,
       "colis": [],
       "etat_global": "ouvert",
       "etat_avance": "pending",
       "distance": 0,
-      "prix_total": 0
+      "prix_total": 0,
+      "date_creation": "2025-08-15T16:50:20.409Z"
     },
     {
-      "id": "",
+      "id": "CARG-414879",
       "trajet": {
         "depart": {
-          "ville": "",
-          "lat": 14.6937,
-          "lng": -17.4441
+          "ville": "Dakar",
+          "lat": 0,
+          "lng": 0
         },
         "arrivee": {
-          "ville": "",
-          "lat": 48.8566,
-          "lng": 2.3522
+          "ville": "italie",
+          "lat": 0,
+          "lng": 0
         }
       },
-      "type": "",
+      "type": "aerienne",
+      "poids_max": 13,
       "poids_total": 0,
-      "poids_max": null,
       "colis": [],
       "etat_global": "ouvert",
       "etat_avance": "pending",
       "distance": 0,
-      "prix_total": 0
+      "prix_total": 0,
+      "date_creation": "2025-08-15T17:20:39.468Z"
     },
     {
-      "id": "CARG-1755272888375",
+      "id": "CARG-547301",
       "trajet": {
         "depart": {
-          "ville": "",
+          "ville": "Dakar",
           "lat": 0,
           "lng": 0
         },
         "arrivee": {
-          "ville": "",
+          "ville": "Paris",
           "lat": 0,
           "lng": 0
         }
       },
-      "type": "",
-      "poids_max": 0,
+      "type": "aerienne",
+      "poids_max": 1,
+      "poids_total": 0,
       "colis": [],
       "etat_global": "ouvert",
       "etat_avance": "pending",
       "distance": 0,
-      "prix_total": 0
+      "prix_total": 0,
+      "date_creation": "2025-08-16T20:37:20.353Z"
+    },
+    {
+      "id": "CARG-316718",
+      "trajet": {
+        "depart": {
+          "ville": "Dakar",
+          "lat": 0,
+          "lng": 0
+        },
+        "arrivee": {
+          "ville": "MBORO",
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "type": "aerienne",
+      "poids_max": 1,
+      "poids_total": 0,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0,
+      "date_creation": "2025-08-16T20:49:38.504Z"
+    },
+    {
+      "id": "CARG-131581",
+      "trajet": {
+        "depart": {
+          "ville": "Dakar",
+          "lat": 0,
+          "lng": 0
+        },
+        "arrivee": {
+          "ville": "italie",
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "type": "aerienne",
+      "poids_max": 2,
+      "poids_total": 0,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0,
+      "date_creation": "2025-08-16T21:35:57.852Z"
+    },
+    {
+      "id": "CARG-280513",
+      "trajet": {
+        "depart": {
+          "ville": "Dakar",
+          "lat": 0,
+          "lng": 0
+        },
+        "arrivee": {
+          "ville": "MBORO",
+          "lat": 0,
+          "lng": 0
+        }
+      },
+      "type": "aerienne",
+      "poids_max": 1,
+      "poids_total": 0,
+      "colis": [],
+      "etat_global": "ouvert",
+      "etat_avance": "pending",
+      "distance": 0,
+      "prix_total": 0,
+      "date_creation": "2025-08-16T21:54:59.713Z"
     }
   ]
 }
