@@ -1,5 +1,6 @@
 export const API_CONFIG = {
-    baseUrl: 'http://localhost:3000',
+    // baseUrl: 'http://localhost:3000'
+    baseUrl: 'https://backendgpmonde.onrender.com',
     endpoints: {
         colis: '/colis',
         cargaisons: '/cargaisons',

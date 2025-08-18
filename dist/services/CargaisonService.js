@@ -173,7 +173,6 @@ export class CargaisonService {
             const colisResponse = await fetch(`${ApiService.getUrl('colis')}?cargaisonId=${cargaisonId}`);
             const colis = await colisResponse.json();
             const updatePromises = colis.map(async (colis) => {
-                // Mapper les états de cargaison aux états de colis
                 let colisStatus = '';
                 switch (newStatus) {
                     case 'en_cours':
